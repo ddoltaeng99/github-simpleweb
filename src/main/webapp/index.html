@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Responsive CSS Tabs</title>
+  <style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&family=Oswald:wght@200;300;400;500;600;700&family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@100;300;400;500;700;900&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&family=Spectral:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/ovt6ynt.css">
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&family=Playfair+Display+SC:wght@900&family=Playfair+Display:ital,wght@0,800;1,800&family=Manrope:wght@800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <script src="scoreboard.js"></script>
+  <style>
+    .tab-link {
+      color: inherit;
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class = "wrapper pre">
+
+</div>
+<div class="wrapper">
+  <div class="title">
+    Scoreboard Pro
+    <div class="line"></div>
+  </div>
+  <div class="container">
+    <div class="card tabs">
+      <input id="tab-1" type="radio" class="tab tab-selector" checked="checked" name="tab" />
+      <label for="tab-1" class="tab tab-primary"><a class="tab-link" onclick="switchTab('tab-1')" >Home</a></label>
+      <input id="tab-2" type="radio" class="tab tab-selector" name="tab" />
+      <label for="tab-2" class="tab tab-success"><a class="tab-link" onclick="switchTab('tab-2')">Enter Teams</a></label>
+      <input id="tab-3" type="radio" class="tab tab-selector" name="tab" />
+      <label for="tab-3" class="tab tab-default"><a class="tab-link" onclick="switchTab('tab-3')" >Scoreboard</a></label>
+      <input id="tab-4" type="radio" class="tab tab-selector" name="tab" />
+      <label for="tab-4" class="tab tab-warning"><a class="tab-link" onclick="switchTab('tab-4')" >View History</a></label>
+      <div class="tabsShadow"></div>
+      <div class="glider"></div>
+      <section class="content">
+        <div class="item" id="content-1">
+          <h2 class="tab-title tab-primary">Why Choose Scoreboard Pro?</h2>
+          <div class="feature-list">
+            <div class="feature-item">
+              <i class="fas fa-clock"></i>
+              <h3>Real-time Updates</h3>
+              <p>Instantly update and track scores for ongoing games.</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-chart-line"></i>
+              <h3>Comprehensive Statistics</h3>
+              <p>Analyze team performance with in-depth game stats.</p>
+            </div>
+            <div class="feature-item">
+              <i class="fas fa-users"></i>
+              <h3>Multi-User Access</h3>
+              <p>Allow coaches, referees, and fans to access live scores.</p>
+            </div>
+            <div class="link_container"><a href="#" id="getstarted_link" onClick="switchTab('tab-2')">Get Started.</a></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+<!-- partial -->
+
+</body>
+</html>

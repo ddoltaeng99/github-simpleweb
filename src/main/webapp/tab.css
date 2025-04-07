@@ -1,0 +1,49 @@
+.tabs {
+    position: absolute;  /* Position it above the container */
+    top: -30px;  /* Move tabs up so half is hidden */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background: #1e1e1e;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 15px 15px 0 0; /* Rounded top corners */
+    z-index: 5; /* Ensure it's slightly below container */
+    overflow: visible; /* Allow text to show properly */
+}
+
+.tab {
+    text-decoration: none;
+    color: white;
+    padding: 14px 24px;
+    margin: 0 12px;
+    border-radius: 5px;
+    background: #333;
+    transition: 0.3s ease-in-out;
+    font-size: 18px;
+    position: relative; /* Keep text from being cut off */
+}
+
+/* Hover effect */
+.tab:hover {
+    background: #ff9800;
+    color: black;
+}
+
+/* Active tab highlighting */
+.tab.active {
+    background: #e68900;
+    font-weight: bold;
+}
+
+/* Adjust container to sit on top of tabs */
+.scoreboard {
+    position: relative;
+    z-index: 10; /* Ensure container is above tabs */
+    background: #1e1e1e;
+    border-radius: 0 0 15px 15px;
+    padding: 30px;
+    margin-top: 30px; /* Lower container to cover half of the tabs */
+}

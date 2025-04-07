@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basketball Scoreboard</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background-color: #121212;
+      color: #ffffff;
+    }
+    .scoreboard {
+      display: inline-block;
+      padding: 20px;
+      border-radius: 10px;
+      background: #1e1e1e;
+      box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
+      width: 500px;
+    }
+    .team {
+      font-size: 24px;
+    }
+    .score {
+      font-size: 32px;
+      margin: 10px;
+    }
+    .timer, .shot-clock, .timeouts, .quarter {
+      font-size: 20px;
+      margin: 10px;
+    }
+    button {
+      margin: 5px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background: #ff9800;
+      color: #ffffff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #e68900;
+    }
+    input {
+      background: #333;
+      color: #fff;
+      border: none;
+      padding: 5px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="scoreboard">
+  <div>
+    <label>Team A: <input type="text" id="teamAName" value="Team A"></label>
+    <span class="score" id="teamAScore">0</span>
+    <button onclick="addPoints('A', 1)">+1</button>
+    <button onclick="addPoints('A', 2)">+2</button>
+    <button onclick="addPoints('A', 3)">+3</button>
+    <button onclick="addPoints('A', -1)">-1</button>
+    <div>Fouls: <span id="teamAFouls">0</span> <button onclick="addFoul('A')">Add Foul</button></div>
+  </div>
+  <hr>
+  <div>
+    <label>Team B: <input type="text" id="teamBName" value="Team B"></label>
+    <span class="score" id="teamBScore">0</span>
+    <button onclick="addPoints('B', 1)">+1</button>
+    <button onclick="addPoints('B', 2)">+2</button>
+    <button onclick="addPoints('B', 3)">+3</button>
+    <button onclick="addPoints('B', -1)">-1</button>
+    <div>Fouls: <span id="teamBFouls">0</span> <button onclick="addFoul('B')">Add Foul</button></div>
+  </div>
+  <hr>
+  <div class="quarter">Quarter: <span id="currentQuarter">1st</span></div>
+  <div class="timer">Quarter Time: <span id="quarterTimer">10:00</span></div>
+  <button onclick="startQuarterTimer()">Start Quarter</button>
+  <button onclick="stopQuarterTimer()">Stop Quarter</button>
+  <button onclick="resetQuarterTimer()">Reset Timer</button>
+  <button onclick="nextQuarter()">Next Quarter</button>
+  <button onclick="resetQuarter()">Reset Quarter</button>
+  <div class="shot-clock">Shot Clock: <span id="shotClock">24</span></div>
+  <button onclick="startShotClock()">Start Shot Clock</button>
+  <button onclick="stopShotClock()">Stop Shot Clock</button>
+  <button onclick="resetShotClock()">Reset Shot Clock</button>
+  <hr>
+  <div class="timeouts">
+    Team A Timeout Timer: <span id="teamATimeoutTimer"></span>
+    <button onclick="useTimeout('A', 30)">Timeout 30s</button>
+    <button onclick="useTimeout('A', 60)">Timeout 1min</button>
+  </div>
+  <div class="timeouts">
+    Team B Timeout Timer: <span id="teamBTimeoutTimer"></span>
+    <button onclick="useTimeout('B', 30)">Timeout 30s</button>
+    <button onclick="useTimeout('B', 60)">Timeout 1min</button>
+  </div>
+</div>
+<script>
+  let quarter = 1;
+  let quarterTime = 600;
+  let shotClock = 24;
+  let quarterInterval, shotClockInterval, timeoutIntervals = {};
+
+
+  function addPoints(team, points) {
+    let score = document.getElementById(`team${team}Score`);
+    score.innerText = Math.max(0, parseInt(score.innerText) + points);
+  }
+
+
+  function addFoul(team) {
+    let fouls = document.getElementById(`team${team}Fouls`);
+    fouls.innerText = parseInt(fouls.innerText) + 1;
+  }
+
+
+  function nextQuarter() {
+    if (quarter < 4) {
+      quarter++;
+    } else {
+      quarter = 'OT';
+    }
+    document.getElementById('currentQuarter').innerText = quarter === 'OT' ? 'OT' : `${quarter}th`;
+    document.getElementById('teamAFouls').innerText = '0';
+    document.getElementById('teamBFouls').innerText = '0';
+  }
+
+
+  function startQuarterTimer() {
+    clearInterval(quarterInterval);
+    quarterInterval = setInterval(() => {
+      if (quarterTime > 0) {
+        quarterTime--;
+        document.getElementById('quarterTimer').innerText = `${Math.floor(quarterTime / 60)}:${(quarterTime % 60).toString().padStart(2, '0')}`;
+      } else {
+        clearInterval(quarterInterval);
+      }
+    }, 1000);
+  }
+
+
+  function stopQuarterTimer() {
+    clearInterval(quarterInterval);
+  }
+
+  function resetQuarterTimer() {
+    quarterTime = 600;
+    document.getElementById('quarterTimer').innerText = '10:00';
+  }
+
+  function startShotClock() {
+    clearInterval(shotClockInterval);
+    shotClockInterval = setInterval(() => {
+      if (shotClock > 0) {
+        shotClock--;
+        document.getElementById('shotClock').innerText = `${Math.floor(shotClock / 60)}:${(shotClock % 60).toString().padStart(2, '0')}`;
+      } else {
+        clearInterval(shotClockInterval);
+      }
+    }, 1000);
+  }
+  function stopShotClock() {
+    clearInterval(shotClockInterval);
+  }
+  function resetShotClock() {
+    quarterTime = 24;
+    document.getElementById('shotClock').innerText = '24';
+  }
+
+  function useTimeout(team, seconds) {
+    clearInterval(timeoutIntervals[team]);
+    let timer = seconds;
+    document.getElementById(`team${team}TimeoutTimer`).innerText = `${timer}s`;
+    timeoutIntervals[team] = setInterval(() => {
+      if (timer > 0) {
+        timer--;
+        document.getElementById(`team${team}TimeoutTimer`).innerText = `${timer}s`;
+      } else {
+        clearInterval(timeoutIntervals[team]);
+        document.getElementById(`team${team}TimeoutTimer`).innerText = '';
+      }
+    }, 1000);
+  }
+
+</script>
+</body>
+</html>
+
+
+

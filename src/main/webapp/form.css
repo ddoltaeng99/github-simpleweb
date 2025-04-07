@@ -1,0 +1,78 @@
+
+#form_team{
+    display: flex;
+    flex-direction: column;    /* Stacks children vertically */
+    justify-content: center;   /* Centers content vertically within the form */
+    align-items: center;       /* Centers content horizontally within the form */
+    background-color: rgb(39, 39, 50); /* Dark gray background */
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;          /* Limits the maximum width */
+    border-radius: 10px;       /* Rounded corners */
+    box-shadow: 0 4px 18px rgb(0, 0, 0); /* Shadow effect */
+    margin-top:10vh;
+    margin-left:7vh;
+}
+.form__group{
+    /*border:1px solid #fff;*/
+    margin: 20px 0;
+    background-color: rgb(39, 39, 50); /* Dark gray background */
+}
+
+span.form_label {
+    font-family: "muli";
+    font-weight: 600;
+    text-shadow: 0.5px 0.5px 0.5px #e7e9f5;
+    color: #0e101a;
+    margin-right: 2px;
+    margin-left: -2px;
+    padding: 0;
+    color: aliceblue;
+    text-shadow: 0.5pt 0.5pt 0.5pt #2d3748;
+}
+input#teamHome, input#teamVisitor{
+    opacity:1;
+    background-color: #fff;    /* White background */
+    color: #303239;            /* Dark gray text */
+    padding:0;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2); /* Inner shadow effect */
+    outline: none; /* Removes default focus outline */
+    width: 200px;
+    height:25px;
+    -webkit-border-radius: 15px; /* Safari and Chrome */
+    -moz-border-radius: 15px;    /* Firefox */
+    border-radius: 15px;         /* Standard syntax */
+    text-align: center;
+}
+#form_team .form__field:focus {
+    border-color: #007BFF; /* Change to your preferred focus color */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Optional: adds a glow effect on focus */
+}
+input:-webkit-autofill {
+    background-color: #fff !important;
+    -webkit-box-shadow: 0 0 0 1000px #fff inset;
+    -webkit-text-fill-color: #000;
+}
+input::placeholder {
+    color: #939393;
+}
+.buttons{
+    text-align: center;
+}
+.buttons button{
+    border:1px solid #3a3a3a;
+    background-color: #000;
+    color:#fff;
+    padding: 10px;
+    width: 100px;
+
+}
+label.label_team{
+    color: #dfdfe6;
+    font-size: 13px;
+}
+.button-container #save-btn, .button-container #cancel-btn {
+    border-radius: 15px;
+
+}
+

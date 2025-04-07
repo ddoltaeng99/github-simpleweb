@@ -1,0 +1,32 @@
+.table-container {
+    width: 100%;
+    overflow-y: auto; /* Enables vertical scrolling */
+    max-height: 590px; /* Sets maximum height for vertical scrolling */
+}
+table {
+    width: 100%;
+    margin: 10px auto;
+    border-collapse: collapse;
+    background: #ece3f4;
+    color: #57376c;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+table th, td {
+    padding: 5px;
+    border: 1px solid #b3a5bc;
+}
+th {
+    background-color: #b16ea7;
+    color: white;
+    text-shadow: 1px 1px 2px #2d3748;
+}
+tr:hover {
+    background-color: #eccbf6;
+}
+.error {
+    color: red;
+}
+#content-4 {
+    height: 90%;
+    width: 90%;
+}
